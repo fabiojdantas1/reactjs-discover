@@ -10,10 +10,9 @@ export function Home() {
       <input type="text" placeholder="Type your name here..."/>
       <button type="button">Add</button>
 
-      <Card />
-      <Card />
-      <Card />
-      
+      <Card name="Fábio Dantas" time="10:22:57" />
+      <Card name="José Silva" time="11:08:15"/>
+      <Card name="Ana Maria" time="11:35:52"/>
     </div>
   );
 }
