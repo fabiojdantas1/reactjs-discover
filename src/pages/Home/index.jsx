@@ -11,6 +11,8 @@ export function Home() {
   //add immutability to replace the previous state with a new state
   const [students, setStudents] = useState([]);
 
+  const [user, setUser] = useState({ name: '', avatar: '' });
+
   function handleAddStudent() {
     const newStudent = {
       name: studentName,
@@ -25,9 +27,17 @@ export function Home() {
     //uses Spread Operator (...) on vector to get content only
     setStudents(previousState => [...previousState, newStudent]);
   }
-
+  //renders data from user's github API in Home with Hooks useEffect and Fetch API
   useEffect(() => {
-    console.log('useEffect was called!');
+    let url = 'https://api.github.com/users/fabiojdantas1';
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setUser({
+          name: data.name,
+          avatar: data.avatar_url            
+        });
+      });
   }, []);
 
   return (
@@ -36,8 +46,8 @@ export function Home() {
       <header>
         <h1>Frequency list</h1>
         <div>
-          <strong>Fábio</strong>
-          <img src="https://github.com/fabiojdantas1.png" alt="profile picture" />
+          <strong>{user.name}</strong>
+          <img src={user.avatar} alt="Profile picture" />
         </div>
       </header>
       <input 
