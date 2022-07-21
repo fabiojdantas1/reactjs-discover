@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import './styles.css';
 
 import { Card } from '../../components/Card';
@@ -25,6 +25,10 @@ export function Home() {
     //uses Spread Operator (...) on vector to get content only
     setStudents(previousState => [...previousState, newStudent]);
   }
+
+  useEffect(() => {
+    console.log('useEffect was called!');
+  }, []);
 
   return (
     //add a fragment so that the function return is wrapped in a single argument expected by JSX 
