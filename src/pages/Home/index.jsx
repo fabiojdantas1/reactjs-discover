@@ -42,7 +42,14 @@ export function Home() {
       </button>
       
       {
-        students.map(student => <Card name={student.name} time={student.time} />)
+        students.map(student => (
+          <Card
+            //add a unique key to each child in list 
+            key={student.time}
+            name={student.name} 
+            time={student.time} 
+          />
+        ))
       }
     </div>
   );
