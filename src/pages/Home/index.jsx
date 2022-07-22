@@ -29,15 +29,20 @@ export function Home() {
   }
   //renders data from user's github API in Home with Hooks useEffect and Fetch API
   useEffect(() => {
-    let url = 'https://api.github.com/users/fabiojdantas1';
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setUser({
-          name: data.name,
-          avatar: data.avatar_url            
-        });
+    //add asynchronous requests to Hooks useEffect via function
+    async function fetchData() {
+      let url = 'https://api.github.com/users/fabiojdantas1';
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log('DATA ===>', data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url            
       });
+    }
+
+    fetchData();
+
   }, []);
 
   return (
